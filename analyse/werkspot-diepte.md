@@ -235,7 +235,164 @@ Bron: https://www.werkspot.nl/algemene-voorwaarden, sectie "Voor Vakmensen", ond
 <!-- /DEEL1 -->
 
 <!-- DEEL2 -->
-*Deel 2 (reviews en klachten) volgt.*
+## Deel 2 – Reviews en klachten
+
+> Basis: `data/werkspot.csv` na aanvulling (432 rijen; was 129). Nieuwe kolom `reviewer_kant` (vakman / consument / onbekend). Alle tellingen hieronder komen uit een script over de CSV (scratchpad `werkspot/d2/count.py`, uitvoer `werkspot/d2/counts.txt`), opgehaald en gecodeerd op 10-11-2026. Periode nieuwe rijen: 1-11-2024 t/m 10-11-2026. Een review kan meerdere thema's hebben, dus de themakolommen tellen niet op tot n.
+
+### 2.1 Databasis per kant en bron
+
+| bron | vakman | consument | onbekend | hoe opgehaald / gefilterd |
+|---|---|---|---|---|
+| Trustpilot NL (www.werkspot.nl) | 118 | 206 | 5 | (a) **alle 262** NL-reviews met 1–3★ sinds 1-11-2024 (dataset `l2ugmQlki2nUd1dAo`; nu volledig gelezen, eerder alleen de nieuwste 130); (b) de **nieuwste 70** met 4★ (12-11-2025 t/m 29-10-2026, run `gCil5UCVueyO3WvZz`); (c) de **nieuwste 30** met 5★ (7-10 t/m 10-11-2026, run `T0Xj270LMJZPOD9Bo`). Inhoudsloze reviews ("Dikke NUL sterren", "Alles goed geregeld") en reviews die niet over Werkspot of een via Werkspot ingehuurde vakman gaan, zijn niet opgenomen. |
+| Trustpilot EN | 12 | 19 | 0 | alle 44 Engelstalige reviews sinds 1-11-2024 (dataset `abLKBneRXwog0uSxW`, alle sterren) |
+| Google Play – Werkspot voor Vakmensen | 32 | – | – | uit deel 1 (200 nieuwste opgehaald; na nr. 100 alles van vóór sept 2023) |
+| App Store – Werkspot voor vakmensen | 23 | – | – | uit deel 1 |
+| App Store – Werkspot (consumenten-app, id1568256243) | 3 | 5 | 6 | **nieuw**: alle 52 reviews opgehaald (run `5fPEcR8zqNGGgUaSs`), 14 vanaf nov 2024 opgenomen. De app wordt door beide kanten gebruikt. |
+| Radar-forum (AVROTROS) | 3 | – | – | uit deel 1, oud (2018–2019) |
+| **totaal** | **191** (172 sinds nov 2024) | **230** (alle sinds nov 2024) | **11** | |
+
+**Groepen** (1 ster / midden = 2–3★ plus 4–5★ mét concreet klachtpunt / positief = 4–5★ zonder klacht):
+
+| kant | 1 ster | midden | positief | geen score |
+|---|---|---|---|---|
+| vakman | 158 | 28 | 2 | 3 |
+| consument | 86 | 66 | 78 | – |
+| onbekend | 6 | 5 | 0 | – |
+
+Niet gevonden of niet op te halen (gezocht via WebSearch op 10-11-2026): Kassa/Radar/Consumentenbond/FD en Tweakers leverden **geen** artikel uit 2025–2026 over Werkspot-leadkosten of consumentenklachten op. Alleen de oude Radar-forumdraden en Werkspot's eigen pagina's kwamen terug. Reddit is voor de zoektool geblokkeerd (domein niet toegankelijk). Een Google Play-versie van de consumenten-app is niet gevonden. LinkedIn, Facebook-groepen en YouTube zijn niet doorzocht om credits te sparen. Er staan dus **geen citaten uit nieuwsmedia of fora van ná 2019** in deze analyse.
+
+### 2.2 Codeboek-uitbreiding en mapping
+
+Nieuwe vakman-codes. De oude codes blijven staan, de fijnere codes komen erbij:
+
+| oude code | fijnere code(s) | regel |
+|---|---|---|
+| `leadkosten` (het model: betalen per contact) | `leadprijs` | klacht over de hoogte of willekeur van het bedrag per lead (€-bedragen, "te hoog", "duur") |
+| `leadkwaliteit` | `klant-reageert-niet`, `fout-nummer`, `prijs-shoppers`, `buiten-werkgebied` | klant reageert niet of verdwijnt; nummer/e-mail klopt niet; klant wil alleen een prijsindicatie of de goedkoopste; lead buiten de regio |
+| `support` | `restitutie` | geld-terugverzoek afgewezen, traag of verrekend |
+| `lock-in` | `abonnement-contract`, `account-geblokkeerd`, `reviews-kwijt` | abonnement of contract niet op te zeggen; account geblokkeerd; opgebouwde reviews kwijt |
+| `bugs`/`mobiel` | `app` | elke klacht over de app of website |
+| – | `lead-concurrentie` (bestond al), `zichtbaarheid-ranking` | lead aan veel vakmannen verkocht; minder aanvragen na een slechte review |
+| – | `transparantie-consument` | **extra code**: vakman vindt dat de consument niet weet dat contact delen de vakman geld kost |
+
+Consument-codes: `te-veel-reacties`, `te-weinig-reacties`, `kwaliteit-vakman`, `gespamd-gebeld` (ook: te veel mails en reviewverzoeken, ongevraagd gebeld), `nepreviews`, `prijsonzekerheid` (rekening hoger dan afgesproken of geen prijsindicatie), `no-show`, `geen-garantie`, `privacy`, `positief:<onderwerp>`. Extra codes, omdat de tekst daar duidelijk om vroeg:
+- `fraude`: aanbetaling of voorschot weg, oplichting.
+- `screening`: Werkspot controleert vakmannen (KvK, bevoegdheid) niet.
+- `geschil-geen-steun`: Werkspot bemiddelt niet en verwijst door naar het Juridisch Loket of de politie.
+- `review-systeem`: review kan niet geplaatst worden, wordt verwijderd, of er komt een reviewverzoek voor het verkeerde bedrijf.
+- `leadmodel-voelbaar`: de consument merkt het leadmodel (dringerige of geïrriteerde vakman, "reageren kost ons geld").
+- `matching-regio`: vakmannen niet uit de buurt.
+
+**Hoe gecodeerd**: nieuwe rijen (303) zijn handmatig gecodeerd. Bij de 118 bestaande vakmanrijen zijn de fijnere codes **op trefwoord** toegevoegd (regels in `werkspot/d2/build.py`; een steekproef van 8 rijen is nagelopen en één fout patroon is gecorrigeerd: "telefonisch niet bereikbaar" ging over Werkspot, niet over de klant). Bij die oude rijen zijn de fijnere codes dus een **ondergrens**: `restitutie` staat bijvoorbeeld bij 10 oude rijen, terwijl `support` daar vaak ook afgewezen restitutie betekent. De 11 bestaande consumentrijen zijn handmatig bijgecodeerd. Bij 14 dubbele URL's zijn de thema's samengevoegd.
+
+### 2.3 Vakmannen (n = 191; 172 sinds nov 2024)
+
+**Thema's** (top, met verdeling over de groepen):
+
+| # | thema | totaal | 1★ | midden | positief |
+|---|---|---|---|---|---|
+| 1 | `leadkosten` (betalen per contact, vóór er werk is) | 159 | 136 | 21 | 0 |
+| 2 | `leadprijs` (hoogte/willekeur, €3–€120 genoemd) | 92 | 73 | 17 | 0 |
+| 3 | `leadkwaliteit` | 81 | 72 | 9 | 0 |
+| 4 | `support` (geen telefoon, standaardmails, incasso) | 67 | 62 | 4 | 0 |
+| 5 | `klant-reageert-niet` | 47 | 44 | 3 | 0 |
+| 6 | `lead-concurrentie` (5–10+ vakmannen per klus) | 39 | 33 | 6 | 0 |
+| 7 | `restitutie` | 28 | 27 | 1 | 0 |
+| 8 | `app` | 18 | 12 | 6 | 0 |
+| 9 | `prijs-shoppers` | 16 | 15 | 1 | 0 |
+| 9 | `transparantie-consument` | 16 | 14 | 1 | 0 |
+| 11 | `lock-in` 10 · `fout-nummer` 9 · `account-geblokkeerd` 8 · `onboarding` 7 · `ontbrekend:review-bezwaar` 6 · `abonnement-contract` 5 · `ontbrekend:dubbele-opt-in` 4 · `ontbrekend:betalen-per-opdracht` 3 · `buiten-werkgebied` 1 · `zichtbaarheid-ranking` 1 · `reviews-kwijt` 1 (ondergrens, zie 2.2) | | | | |
+
+**1 ster (158).** Dit is het bekende beeld uit deel 1, nu met twee keer zoveel data. Er komen drie dingen bij:
+- *Lead-concurrentie gekoppeld aan een rekensom*: "meer dan 200 klanten aangeschreven. Resultaat? Slechts 4 opdrachten en … bijna €1000 kwijt aan leadkosten" (Trustpilot NL, 2025-08-07).
+- *Het filter is weggehaald*: "Vroeger kon je ook nog filteren op aantal reacties als professional. Dit hebben ze er nu bewust uitgehaald" (Trustpilot NL, 2025-08-29).
+- *Klant kan zonder gesprek accepteren*: "zonder enige chat/gesprek worden gegevens doorgestuurd en geld in rekening gebracht" (Trustpilot NL, 2025-03-13).
+
+**Midden (28) – waar de nuance zit.** Middenreviewers wijzen het model niet af. Hun bezwaar is de verhouding en het moment van betalen:
+- `leadprijs` niet in verhouding tot de klusgrootte (17 van 28): "Op zich geen slecht model, was het niet dat de kosten erg uit verhouding zijn met de opbrengsten. Een lead/opdracht die 2 uur kost … soms wel €20." (Trustpilot NL, 2026-02-07, 2★); "Voor een koffietafel enkel een nieuwe laklaag is er een commisie van 37 euro" (App Store, 2024-11-01, 2★).
+- Betalen bij contact in plaats van bij opdracht: "dat de leadprijs bij contact wordt verrekend in plaats van inhuur" (Google Play, 2026-03-01, 2★).
+- Volume is er wel, conversie niet: "Ik krijg redelijk veel klanten, ben ik super blij mee. Maar 2 op 5 … alleen een berichtje van we hebben al iemand gevonden … wel een leadprijs" (Trustpilot NL, 2025-05-25, 2★).
+- `app` (6 van 28): "app moet 3 of 4 keer per maand opnieuw geïnstalleerd worden" (Google Play, 2026-04-19, 2★).
+- Transparantie: "De opdrachtgevers zijn niet op de hoogte dat de vakman een prijs betaald … Dit schrikt vakmensen af en laat opdrachtgevers met een opdracht zitten waar niet op wordt gereageerd." (Trustpilot NL, 2026-08-05, 2★)
+
+**Positief (2) + gemengd.** Echt positieve vakmanreviews zijn zeldzaam: "Door Werkspot heb ik regelmatig Werk en ben dik tevreden" (Trustpilot NL, 2026-11-05, 5★); "Good company, plenty of jobs found here" (Trustpilot EN, 2024-11-27, 5★). Twee 5★-reviews uit deel 1 noemen zelf een klacht over de leadprijs en staan daarom nu in "midden".
+
+### 2.4 Consumenten (n = 230; allemaal sinds nov 2024)
+
+**Thema's:**
+
+| # | thema | totaal | 1★ | midden | positief |
+|---|---|---|---|---|---|
+| 1 | `kwaliteit-vakman` (prutswerk, taal, schade) | 48 | 35 | 13 | 0 |
+| 2 | `fraude` (aanbetaling weg, oplichting) | 32 | 27 | 5 | 0 |
+| 3 | `screening` (KvK/bevoegdheid niet gecontroleerd) | 29 | 12 | **17** | 0 |
+| 4 | `prijsonzekerheid` | 21 | 14 | 7 | 0 |
+| 4 | `no-show` | 21 | 16 | 5 | 0 |
+| 6 | `geschil-geen-steun` | 20 | 16 | 4 | 0 |
+| 7 | `gespamd-gebeld` | 16 | 8 | 8 | 0 |
+| 7 | `te-weinig-reacties` | 16 | 2 | **14** | 0 |
+| 9 | `geen-garantie` | 14 | 12 | 2 | 0 |
+| 10 | `review-systeem` 13 · `privacy` 9 · `nepreviews` 8 · `leadmodel-voelbaar` 8 · `gebruiksgemak` 8 · `bugs` 6 · `support` 6 · `te-veel-reacties` 3 · `matching-regio` 3 | | | | |
+| + | `positief:vakman` 52 · `positief:snelheid` 37 · `positief:gemak` 20 · `positief:keuze` 11 · `positief:matching` 10 · `positief:reviews` 6 · `positief:betrouwbaar` 4 · `positief:concept` 4 | | | | |
+
+**1 ster (86).** Hier gaat het vooral over de **vakman**, niet over Werkspot: prutswerk, een aanbetaling die verdwijnt, of iemand die niet komt opdagen. Werkspot krijgt de rekening omdat het niet screent en niet bemiddelt:
+- "Werkspot doet niets en verwijst mij door naar het Juridisch loket. … Ben overgestapt naar Klusup, geeft meer vertrouwen omdat alle betalingen via Klusup gaan." (Trustpilot NL, 2025-12-03)
+- "Een bedrijf dat zich voor het eerst aanmeldt bij Werkspot mag zelf voor de eerste 5 reviews zorgen … Dit betekent dus dat deze heel goed nep kunnen zijn!" (Trustpilot NL, 2025-03-15)
+- Privacy: "Angry trader called me without me providing my phone number, he told me he got it from werkspot for 30 euros." (Trustpilot EN, 2025-03-17)
+
+**Midden (66) – de meeste aandacht.** Drie patronen vallen op:
+1. **Te weinig reacties** (14 van 66). Dit is het spiegelbeeld van de vakmanklacht over leadprijs en concurrentie: "Van de 10 bedrijven die ik selecteren kon hebben er maar 3 gereageerd … Probleem is waarschijnlijk dat bedrijven die reageren sowieso … een bedrag moeten betalen" (Trustpilot NL, 2026-10-02, 3★); "Van de 5 uitgenodigde bedrijven heeft slechts 1 gereageerd, maar hiermee heeft mijn zoektocht uiteindelijk een prima match opgeleverd." (Trustpilot NL, 2026-04-20, 4★). Een vakman bevestigt het mechanisme: "Dit komt omdat steeds meer klanten 'alleen maar een prijsje' willen weten. De vakman moet echter betalen … dus wordt hij heel selectief!" (Trustpilot NL, 2025-02-08, 1★).
+2. **Screening / betrouwbaarheid** (17 van 66): tevreden over het platform, wantrouwig over het aanbod. "het werkt en het idee is geweldig … maar: er zitten een enorme hoeveelheid charlatans op" (Trustpilot NL, 2026-06-05, 3★); "Nagenoeg alle reacties bleken helemaal niet de bevoegdheid te hebben om het werk uit te voeren." (Trustpilot NL, 2026-07-13, 3★).
+3. **Ruis en kleine ergernissen** (`gespamd-gebeld` 8, `gebruiksgemak` 7): te veel reviewverzoeken vóór de klus, reacties slecht te vergelijken, chat-inbox zonder ongelezen-markering. "het na enkele dagen al spammen met de vraag om een review terwijl de klus pas maanden later zou plaatsvinden" (Trustpilot NL, 2026-10-16, 4★); "De reacties op de klus zijn niet eenvoudig te beoordelen en te vergelijken." (Trustpilot NL, 2026-07-09, 4★).
+
+Ook in het midden: consumenten merken het leadmodel zelf: "Als klant wil je offertes kunnen vergelijken zonder dat je je schuldig hoeft te voelen. … Ik zou liever abonnementskosten … zien" (Trustpilot NL, 2024-12-30, 1★); "Helaas kost het de dienstverlener al geld om überhaupt in contact te komen. … Kan beter met een achteraf systeem" (Trustpilot NL, 2026-09-21, 4★).
+
+**Positief (78).** Kort en algemeen. 36 van de 78 gaan vooral over de **vakman** (netjes gewerkt, afval meegenomen), niet over het platform. Over het platform: snelheid (27), gemak (14), keuze (10). "Ervaring met Werkspot: ruime keuze, snel een aanbod." (Trustpilot NL, 2026-08-24, 4★); "Na een selectie kan ik met gerust hart obv reviews, de klus uit handen geven." (Trustpilot NL, 2026-10-07, 5★).
+
+### 2.5 Wat beide kanten expliciet waarderen
+
+| waardering | vakman | consument |
+|---|---|---|
+| **Volume / snel contact**: veel aanvragen of snel reacties | `positief:aanbod` 4 ("Ik krijg redelijk veel klanten", 2025-05-25) | `positief:snelheid` 37, `positief:keuze` 11 |
+| **Het concept** (vraag en aanbod bij elkaar, geen eigen marketing nodig) | `positief:concept` 2 ("Op zich een mooi platform voor mensen die niet zo goed zijn in netwerken", 2025-03-04) | `positief:concept` 4; "Ook fijn dat je niet afhankelijk bent van de SEO skills van vakmensen" (2024-12-30) |
+| **Reviews als vertrouwensanker** | reviews zijn waardevol, en juist daarom doet verlies pijn (`account-geblokkeerd` 8) | `positief:reviews` 6, maar tegelijk `nepreviews` 8 en `review-systeem` 13 |
+| **Werkende app/chat** | `positief:app` 4 (meestal mét klacht) | `positief:gemak` 20 |
+
+Beide kanten waarderen dus hetzelfde: **snel een match en een geloofwaardig reviewprofiel**. Over prijs zegt geen van beide kanten iets positiefs. Eén consument noemt "duidelijk prijs" (2026-03-19) en één "vlot een richtprijs" (2026-10-27).
+
+### 2.6 "Wat net mist": concrete wensen
+
+**Vakmannen:**
+1. **Betalen bij opdracht of na wederzijdse bevestiging**, niet bij contact: "Werkspot zou dit anders moeten gaan vormgeven … pas de lead te laten betalen door ondernemer nadat de klus gegarandeerd doorgaat" (Trustpilot NL, 2026-05-17); "maak dit systeem anders dat je beide mee eens moet zijn om gegevens te delen" (2025-01-15). Telling: `ontbrekend:dubbele-opt-in` 4 + `ontbrekend:betalen-per-opdracht` 3, en het komt impliciet terug in tientallen `leadkosten`-rijen.
+2. **Maximaal 3–4 vakmannen per klus**, of het filter op aantal reacties terug: "Het aantal vakmensen per opdracht beperken" (2026-05-06); "MAXIMAAL 3 TOT 4 MAN" (2026-02-18).
+3. **Consument informeren** dat contact delen geld kost (`transparantie-consument` 16): "werkspot moet als koptekst aan consumenten laten weten dat 'chat starten' vakmensen geld kost!!" (2026-07-05).
+4. **Leads verifiëren en aanvragen completer maken** (foto's, maten): "strengere eisen stelt aan de volledigheid van aanvragen en de contactkosten herziet wanneer een opdrachtgever vrijwel direct afhaakt" (2026-09-05); "Bellen klanten nooit na om te bevestigen of het wel 'echt' een lead is" (2026-07-05).
+5. **Leadprijs die past bij de klusgrootte** en niet zonder aankondiging wijzigt (2026-08-07 verwijst naar art. 19.7 AV).
+6. **Hoor en wederhoor bij slechte reviews** in plaats van direct blokkeren; reviews splitsen in klant/vakman (2025-08-13).
+7. **Bereikbare support** (telefoon) en een opzegknop voor het abonnement (2025-08-27 EN; 2026-05-06).
+
+**Consumenten:**
+1. **Screening van vakmannen** (KvK, bevoegdheid, verzekering): "Goed screenen is noodzaak." (2025-04-04, 3★).
+2. **Bemiddeling of geldbescherming bij conflicten**: betaling via het platform of escrow ("alle betalingen via Klusup", 2025-12-03).
+3. **Betrouwbaardere reviews**: negatieve reviews niet weghalen, geen zelf-aangeleverde eerste 5 reviews, en een besloten enquête per vakman (netjes, veilig, spreekt Nederlands, komt afspraken na) (2026-06-05).
+4. **Meer en serieuzere reacties**, en niet-reagerende bedrijven kunnen melden of laten verwijderen (2026-04-28, 4★).
+5. **Minder mails**: reviewverzoek pas na de klus, en een uitschrijfoptie (2026-10-16; 2025-05-11).
+6. **Offertes naast elkaar kunnen vergelijken** en de vestigingsplaats zien (2026-07-09; 2026-10-31).
+7. **Telefoonnummer pas delen na eigen akkoord** (2026-01-19 EN; 2025-05-25 EN).
+
+### 2.7 Vertekening
+
+- **Filter per bron**: de 1–3★ op Trustpilot NL zijn volledig gelezen (262). Van 4★ en 5★ alleen de nieuwste 70 en 30. De consumentenkant is daardoor representatiever voor de kritische reviews dan voor de positieve.
+- **Volumeverhouding** (afgeleid, **[aanname]** bij extrapolatie): Trustpilot meldt 7.675 reviews en een TrustScore van 4 voor www.werkspot.nl (veld `companyTotalReviews`/`companyTrustScore`, opgehaald 10-11-2026). Er zijn 262 NL-reviews met 1–3★ in 24 maanden (~11 per maand). De 30 nieuwste 5★ vallen in ruim één maand en de 70 nieuwste 4★ in bijna twaalf maanden. Ruwe schatting: de NL-reviews van de laatste 24 maanden zijn grotendeels 5★, en ~1 op 4 à 5 is kritisch.
+- **Vakman vs consument op Trustpilot NL**: binnen 1–3★ is het ongeveer half om half (117 vakman tegen 118 consument opgenomen; 5 onbekend; ~22 inhoudsloos of niet relevant). Binnen de 100 bekeken 4–5★ staat **1** vakman. Vakmannen zijn op Trustpilot dus vrijwel alleen boos aanwezig. Trustpilot nodigt vooral consumenten uit na een klus. Veel 4–5★ gaan daardoor over de individuele vakman ("Harde werker"), niet over Werkspot.
+- **Boze-reviewer-bias**: vakmannen schrijven vooral als ze stoppen of geld kwijt zijn. Er zijn vrijwel geen tevreden vakmanstemmen (2 positief van 191). Hun ontevredenheid is robuust (alle bronnen, zelfde patroon), maar *hoeveel* vakmannen ontevreden zijn, is niet te kwantificeren. Vakmannen moedigen elkaar ook aan om te reviewen ("Lees alle 1 ster reviews vakmensen!", 2026-10-27, niet opgenomen).
+- **Kantbepaling**: `reviewer_kant` volgt uit de tekst ("als vakman", "leads", "ik heb een klus geplaatst"). 11 rijen zijn **onbekend** (o.a. korte app-reviews). Consumentenreviews over fraude zijn soms niet te verifiëren en gaan vaak over één bedrijf.
+- **Bron-mix**: vakmanrijen komen voor 62% van Trustpilot NL en voor 29% uit de vakman-apps. Consumentrijen komen voor 90% van Trustpilot NL. Geen forum- of nieuwsbron uit de laatste 24 maanden.
+
+### Bronnen (opgehaald 10-11-2026)
+- Trustpilot www.werkspot.nl via Apify `automation-lab/trustpilot`: datasets `l2ugmQlki2nUd1dAo` (NL 1–3★ sinds 2024-11), `K6NeBaw03VWwymmIy` (NL 4★), `oo8yLe6tdi2Gvdi8E` (NL 5★), `abLKBneRXwog0uSxW` (EN). Review-URL's staan per rij in de CSV (https://www.trustpilot.com/reviews/<id>).
+- App Store "Werkspot" https://apps.apple.com/nl/app/werkspot/id1568256243 via `thewolves/appstore-reviews-scraper`, dataset `1SOXuymGB7tRxeJik`.
+- Vakman-apps en Radar-forum: zie deel 1 / `analyse/werkspot.md`.
 <!-- /DEEL2 -->
 
 <!-- DEEL3 -->
