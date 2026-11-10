@@ -5,7 +5,233 @@
 **Leeswijzer.** Alles wat niet uit een opgehaalde bron komt, staat gemarkeerd als **[aanname]** of **[interpretatie]**. Pagina's die niet op te halen waren, staan per deel onder "Niet opgehaald".
 
 <!-- DEEL1 -->
-*Deel 1 (hoe Werkspot werkt) volgt.*
+## Deel 1 – Hoe Werkspot werkt
+
+> Alle pagina's opgehaald op **10-11-2026** via Apify web-fetch, tenzij anders vermeld. Citaten staan letterlijk tussen aanhalingstekens. Eigen duiding is gemarkeerd als **[interpretatie]**, ontbrekende onderbouwing als **[aanname]**.
+>
+> **Belangrijke bronnoot over datums.** Alle opgehaalde blogpagina's van werkspot.nl tonen "Bijgewerkt op 24-08-2026" en hebben in de metadata `datePublished` 2026-08-24 (11:53–11:56 uur). Dat geldt ook voor een actie uit juni 2017 (cashback-blog) en voor twee FAQ-pagina's die elkaar tegenspreken (€3–€60 en €3–€75). **[interpretatie]** 24-08-2026 is dus een migratie- of herpublicatiedatum van het CMS en geen inhoudsdatum. De bewering in de repo dat de €3–€75 "per de FAQ van 24-08-2026" geldt, klopt letterlijk, maar zegt niets over wanneer die prijsband is ingegaan.
+
+### 1. Eigenaar en structuur
+
+| Feit | Bron |
+|---|---|
+| Juridische entiteit: "Werkspot BV, gevestigd te Tilburg en kantoorhoudende aan de (1017 BS) Herengracht 469 te Amsterdam, KvK nummer: 18079951" | AV vakmensen art. 1.15 (versie "Amsterdam, maart 2026") |
+| Opgericht in 2005 door Joost Gielen en Sjoerd Eikenaar. Sinds 2013 "onderdeel van … HomeAdvisor", dat volgens deze pagina "deel uit[maakt] van IAC" | werkspot.nl/over-ons (opgehaald 10-11-2026). **Let op: deze pagina is verouderd**, zie hieronder |
+| "Vanuit Amsterdam werken 120 internationale professionals aan het succes van onze merken Werkspot en Instapro" | werkspot.nl/over-ons |
+| **IAC heeft Angi op 31 maart 2025 afgesplitst.** "IAC no longer owns any shares of Angi capital stock"; Angi is "an independent, publicly traded company". Joey Levin werd Executive Chairman van Angi, en Jeff Kip was toen CEO. | IAC/Angi-persbericht, 1 april 2025 (SEC 8-K ex. 99.1) |
+| Angi (10-K over 2025): "We also own and operate the following international businesses … (i) HomeStars, MyBuilder, MyHammer, Travaux and Werkspot, leading home services marketplaces in Canada, the United Kingdom, Germany, France and the Netherlands, respectively, (ii) the Austrian operations of MyHammer and (iii) the Italian operations of Werkspot." | Angi 10-K FY2025 (ingediend 20-02-2026) |
+| Segmenten: "(i) U.S. and (ii) International (consisting of businesses in Europe and Canada)". "International revenue primarily comprises leads revenue for consumer matches and membership subscription revenue from Pros." | Angi 10-K FY2025 |
+| International-omzet: $126,5 mln in 2025 tegen $129,0 mln in 2024 (−2%), dat is 12% van de totale Angi-omzet ($1.030,5 mln). Oorzaak volgens Angi: "a management decision to change the business model of the Canadian business when migrating it onto the European platform" | Angi 10-K FY2025 |
+| Q3 2026: International-omzet $30,9 mln (−5% j-o-j) "due primarily to a decrease in the number of active Pros as well as unfavorable foreign currency exchange rate movements". International Adjusted EBITDA $10,3 mln (Q3 2025: $8,6 mln). De vaste kosten van International daalden van 35% naar 21% van de omzet. | Angi Q3 2026-persbericht, 03-11-2026 (SEC 8-K) |
+| Angi in 2026: nieuwe CEO **Mike Steib** ("My first 45 days…"). In Q2 2026 een afwaardering van goodwill en immateriële activa van $235,2 mln. Op 03-11-2026 een aangekondigde reductie van "approximately 300 roles" wereldwijd. Een "planned retirement of our legacy technology platform". | Angi Q3 2026-persbericht |
+| Zustermerken die de over-ons-pagina noemt: MyBuilder (UK), Travaux.com (FR), My-Hammer.de (DE). In Italië: "nummer drie in de markt met 60.000 klussen per jaar en ruim 11.000 aangesloten vakmensen" (verouderde tekst) | werkspot.nl/over-ons |
+
+**Wat er 2024–2026 gebeurde, samengevat.** IAC heeft Angi per 31-03-2025 volledig afgestoten. Werkspot is sindsdien een dochter van het zelfstandige, beursgenoteerde Angi Inc. en valt binnen het segment "International". In de opgehaalde bronnen (10-K FY2025, Q3 2026-persbericht) staat geen aankondiging van verkoop of afsplitsing van de internationale tak. **[interpretatie]** Wel zijn er signalen van druk bij de moeder: omzetdaling, een goodwill-afwaardering, een nieuwe CEO, ontslagen en een migratie naar één "European platform". Of Werkspot daardoor verandert, blijkt niet uit de bronnen.
+- In de 10-K wordt Italië aangeduid als "the Italian operations of Werkspot". De Instapro-merknaam staat er niet in, maar de over-ons-pagina noemt nog wel "onze merken Werkspot en Instapro". StarOfService komt in geen enkele opgehaalde bron voor. **[aanname]** Het hoort niet bij deze groep.
+- De over-ons-pagina is aantoonbaar verouderd: ze noemt HomeAdvisor/IAC als moeder en Tinder/Vimeo als zusterbedrijven. Gebruik haar niet als bron voor de huidige eigendomsstructuur.
+
+### 2. Verdienmodel voor vakmannen
+
+**Inschrijven.** Inschrijven is gratis ("Schrijf je gratis in"; "Vakmensen kunnen gratis lid worden"). Bron: werkspot.nl/vakman/registreren en de homepage.
+
+**Leadprijs: wat en wanneer.**
+- Definitie: "Leadprijs: de door de Vakman verschuldigde vergoeding wanneer de Contactgegevens van de Klant met de Vakman worden gedeeld na een Reactie." (AV art. 1.8)
+- "De Leadprijs wordt verschuldigd wanneer de Contactgegevens van de Klant na een Reactie met de Vakman worden gedeeld. Het is niet nodig dat de Vakman de opdracht krijgt toegewezen om de Leadprijs verschuldigd te laten zijn." (AV art. 19.1)
+- Registratiepagina: "Reageer op zoveel opdrachten als je wilt. Op basis van je profiel, eerdere opdrachten en reviews beslissen opdrachtgevers met wie ze hun contactgegevens willen delen." En: "Wanneer een opdrachtgever contactgegevens met jou deelt, brengen wij je leadkosten in rekening."
+- AV opdrachtgevers art. 3.2 noemt twee varianten: "Afhankelijk van de beschikbare functionaliteit kan een Vakman de Contactgegevens van de Klant onmiddellijk na het reageren op een Advertentie verkrijgen, of kan hij een Reactie indienen waarvoor bevestiging door de Klant nodig is voordat Contactgegevens worden gedeeld." **[interpretatie]** Er bestaat dus naast het gebruikelijke model van wederzijdse interesse ook een directe variant, waarbij de vakman meteen betaalt.
+- Een lead bevat "een naam, e-mailadres en een telefoonnummer" (FAQ).
+
+**Hoogte en bepaling van de leadprijs.**
+- FAQ "brandende vragen": "De leadprijs is variabel en onder andere gebaseerd op vakgebied, oppervlakte, de hoeveelheid (denk hierbij aan deuren, kozijnen, wanden en/of trappen) en het materiaal. De leadprijs staat altijd vermeld voordat je op een opdracht reageert en kan variëren van € 3,00 tot € 75,00. Deze prijs staat vast en zal nooit worden aangepast nadat je hebt gereageerd." (werkspot.nl/blog/faq-brandende-vragen-over-werkspot, "Bijgewerkt op 24-08-2026") **→ bevestigd.**
+- **Tegenstrijdigheid:** werkspot.nl/blog/faq (ook "Bijgewerkt op 24-08-2026") noemt woordelijk dezelfde tekst, maar met "**€ 3,00 tot € 60,00**". **[interpretatie]** De maximumprijs is ooit verhoogd van €60 naar €75, maar wanneer is niet vast te stellen.
+- AV art. 19.1: de leadprijs "is afhankelijk van de inhoud van de gevraagde kluswerkzaamheden en de wijze waarop de Reactie wordt verzonden en kan van tijd tot tijd wijzigen. Het bedrag van de Leadprijs wordt aan de Vakman meegedeeld voordat hij een Reactie verzendt…"
+- AV art. 19.7 (slot): "Het voorgaande geldt niet voor de Leadprijs. Deze kan te allen tijde en zonder nadere aankondiging door Werkspot gewijzigd worden."
+- Werkspot zelf in de FAQ: "Het platform is zo ontworpen dat de inkomsten uit de opdrachten die je mag uitvoeren, na verloop van tijd al jouw leadkosten dekken. Dat geldt dus ook voor de kosten die je hebt gemaakt voor de leads die niet succesvol zijn."
+- Alle prijzen zijn exclusief btw (AV art. 19.5).
+
+**Abonnementen, pakketten en gesponsorde plaatsing.**
+- De AV noemen "abonnementen en pakketten" (art. 1.10) en een "maandelijkse of anderszins periodiek verschuldigde vergoeding" naast de leadprijs, "bij vooruitbetaling" (art. 19.6). Die vergoeding is gekoppeld aan overeenkomsten voor bepaalde duur onder art. 18, die gelden voor overeenkomsten "aangegaan voor 1 april 2018".
+- Gesponsorde plaatsing: "Vakmannen hebben de mogelijkheid om Werkspot een extra maandelijks bedrag te betalen voor gesponsorde plaatsing, waarbij hun Profielpagina (bij toerbeurt met andere gesponsorde Vakmannen) op een prominente positie boven profielen … kan worden weergegeven. Alle gesponsorde plaatsingen zijn onderworpen aan afzonderlijke algemene voorwaarden." (art. 6.8)
+- **Historische prijs:** een actie uit juni 2017 noemt "de waarde van het basis abonnement van €240,-" (werkspot.nl/blog/cashback-zomeractie…). Die actie liep "tot en met 30 juni 2017"; het is onduidelijk of €240 een maand-, kwartaal- of jaarbedrag was.
+- **Huidige abonnementsprijzen en de prijs van gesponsorde plaatsing zijn niet gevonden** op openbare pagina's. Reviewers in de repo noemen "ongeveer 70 euro" per maand (zie analyse/werkspot.md). Dat is niet geverifieerd.
+- Credits: "Werkspot kan, maar is onder geen enkele omstandigheid verplicht om, aan de Vakman Credits ter beschikking te stellen." (art. 19.3)
+
+**Facturatie en incasso.**
+- FAQ: "Maandelijks wordt op de eerste van de maand gefactureerd."
+- AV art. 20.1: de leadprijs wordt gefactureerd "in de maand volgend op de maand waarin de Vakman de Lead heeft ontvangen, of eerder, als de Vakman de kredietlimiet op zijn Account heeft overschreden."
+- Art. 20.2: automatische incasso. Art. 20.3: bij niet-betaling volgt blokkade van het account. Art. 20.4: incassokosten "minimaal 15% van de hoofdsom, met een minimumbedrag van EUR 100,-". Art. 20.7: "Enig beroep door de Vakman op opschorting, verrekening of aftrek is niet toegestaan."
+
+**Hoeveel vakmannen per lead of klus?**
+- **Geen maximum gevonden** in de AV of op de opgehaalde pagina's. Consumentenpagina: "dan introduceren we je bij meerdere gekwalificeerde vakmannen" (werkspot.nl/hoe-werkt-het). Registratiepagina: "Reageer op zoveel opdrachten als je wilt."
+- Directe aanvraag (selectie door de consument): "De selectie is beperkt exclusief, de termijn hiervoor staat altijd bij de opdracht aangegeven. Ontvangt een opdracht binnen deze termijn te weinig reacties, dan wordt deze naar andere vakmannen gestuurd." En: "Ontvang je hierop een antwoord met telefoonnummer van de klant? Dan betaal je de lead. Ontvang je niets? Dan betaal je ook niets!" (werkspot.nl/blog/nieuw-bij-werkspot-directe-aanvraag; inhoudsdatum onbekend)
+- Reviewers melden 5–10+ vakmannen per lead (zie analyse/werkspot.md). Dat is niet door Werkspot bevestigd.
+
+**Rangschikking (bepaalt wie de consument ziet), AV art. 6.6.** De parameters "in volgorde van typisch belang":
+1. relevantie (vakgebied);
+2. geografische nabijheid;
+3. klantfeedback ("Hoe beter uw beoordeling, hoe hoger…");
+4. interacties: "Wij beoordelen daarom hoeveel antwoorden u in de week vóór het aanmaken van de Advertentie door de Klant hebt verzonden en of deze antwoorden betrekking hadden op vergelijkbare Advertenties. Hoe hoger het aantal antwoorden, hoe hoger u in de rangschikking voor de Klant verschijnt.";
+5. willekeur: een boost voor vakmannen die "2 maanden of minder actief" zijn.
+
+**[interpretatie]** Wie meer reageert, en dus meer leadkosten kan oplopen, wordt hoger getoond.
+
+**Restitutie.**
+- AV art. 19.2: "Werkspot hanteert een restitutiebeleid, waaronder de Vakman onder omstandigheden een restitutie kan aanvragen van de Leadprijs … De Restitutie wordt uitgekeerd in de vorm van een tegoed ter hoogte van de Leadprijs, welke uitsluitend gebruikt kan worden op het Platform. Een Restitutie wordt enkel toegekend onder de omstandigheden die omschreven zijn in het restitutiebeleid en Werkspot bepaalt geheel naar eigen inzicht of daar in een concreet geval sprake is."
+- AV art. 19.4: "Restituties en Credits zijn geldig voor de duur van 1 (een) jaar, tenzij anders overeengekomen. Bij het einde van de Overeenkomst, op welke grond dan ook, komen alle Restituties en Credits te vervallen. Restituties en Credits worden niet in geld uitgekeerd."
+- FAQ, bij een onbereikbare klant: "houd rekening met ongeveer een week. Klopt de contactinformatie niet? Dan kan je met ons contact opnemen". Die link (werkspot.nl/blog/leads-en-restitutie) geeft een **404**.
+- **Het restitutiebeleid zelf (geldige gronden, aanvraagtermijn) is niet gevonden.** Zie "Niet opgehaald".
+
+**Contractduur en opzegging.**
+- Standaard geldt onbepaalde duur (art. 17.1). Opzeggen: "op ieder moment … door een e-mail te sturen naar info@werkspot.nl met het onderwerp 'Verwijdering Account'", of via een opzegproces in het account als dat er is (art. 17.2). Werkspot zelf kan opzeggen met "een opzegtermijn van één maand" (art. 17.3).
+- Oude jaarcontracten (aangegaan vóór 1 april 2018): duur 1 jaar met stilzwijgende verlenging met 1 jaar (art. 18.2). Opzeggen kan alleen online via "Mijn Account"; "Opzeggingen via telefoon, post of e-mail worden in verband met fraudegevoeligheid niet in behandeling genomen" (art. 18.3).
+- Tariefwijziging: periodieke bedragen gaan "1 (één) maand na bekendmaking" in. De vakman kan opzeggen "gedurende 14 (veertien) dagen voorafgaand aan de datum waarop de wijziging van kracht wordt" (art. 19.7). Daarnaast mag Werkspot jaarlijks indexeren volgens het CBS-cijfer, zonder opzegrecht (art. 19.8).
+
+### 3. Klantreis consument
+
+1. **Klus plaatsen, gratis.** "Het is makkelijk, gratis en vrijblijvend." "Vermeld zoveel mogelijk informatie… Tip: Neem foto's met je telefoon" (werkspot.nl/hoe-werkt-het). De homepage zegt: "Plaats je klus gratis".
+2. **Reacties ontvangen.** "Nadat je je klus geplaatst hebt, sturen we je aanvraag door naar gekwalificeerde vakmannen. Wacht rustig totdat je voorstellen ontvangt via de e-mail." Een voorstel bestaat uit een persoonlijk bericht en, "wanneer mogelijk", een "richtprijs" (hoe-werkt-het). Er is ook een consumentenapp met "notificaties en de chatfunctie" (homepage).
+3. **Directe aanvraag.** De consument "ontvangt een lijst met aanbevolen vakmannen" en kan zelf vakmannen selecteren (blog directe aanvraag).
+4. **Contactgegevens delen.** De consument beslist met wie hij contactgegevens deelt; pas dan betaalt de vakman (registratiepagina; AV art. 1.8/19.1). In sommige functionaliteit krijgt de vakman de gegevens direct (AV opdrachtgevers art. 3.2).
+5. **Afspraak en uitvoering.** De overeenkomst komt pas tot stand op het moment dat de opdrachtgever "dit uitdrukkelijk aan de Vakman heeft bevestigd. Werkspot is bij Overeenkomsten tussen de Opdrachtgever en de Vakman geen partij." (AV opdrachtgevers art. 5.8; vakmensen art. 6.12)
+6. **Review.** Een review kan alleen als "het werk reeds is begonnen of je een aanbetaling hebt gedaan", maximaal 1000 tekens, met een score van 1–5 sterren. Het profielgemiddelde is "het gemiddelde van hun gecombineerde beoordelingen" (werkspot.nl/voorwaarden-voor-reviews, "Updated: 17 Januari 2025").
+7. **Kosten voor de consument:** geen. Het platform is "gratis en vrijblijvend"; consumenten betalen geen bemiddelingskosten volgens de opgehaalde pagina's.
+8. **Garantie: niet gevonden.** Er is geen "Werkspot Garantie" op de opgehaalde pagina's. Bij ontevredenheid verwijst Werkspot naar eigen stappen tegenover de vakman: melden, ingebrekestelling, branchevereniging of Juridisch Loket. Het platform zegt alleen "Bij twijfel neem dan contact met ons op" (werkspot.nl/blog/niet-tevreden-over-het-werk-van-de-vakman). Volgens de AV heeft Werkspot "slechts een faciliterende rol" (opdrachtgevers art. 3.2).
+   - **[interpretatie]** Dit is een duidelijk verschil met Angi in de VS. Daar noemt het Q3-persbericht een "service guarantee expense" als kostenpost (die gaat over het Amerikaanse en geconsolideerde bedrijf, niet specifiek over Werkspot).
+
+### 4. Aantallen van de eigen site (opgehaald 10-11-2026)
+
+| Cijfer | Waar | Opmerking |
+|---|---|---|
+| **42.491 vakmensen**, **25+ vakgebieden**, **843.038 reviews** | homepage werkspot.nl | Live teller (cache-leeftijd ±18 min) |
+| 42.448 vakmannen, **6.765.869 klussen**, 842.869 reviews | werkspot.nl/over-ons | Zelfde teller, cache ±14,6 uur oud |
+| "Meer dan een half miljoen echte reviews" | homepage | |
+| 16.475 dakdekkers, 8.135 bouwbedrijven, 14.293 badkamerinstallateurs "in Nederland" | homepage | **[interpretatie]** De categorieën overlappen: de som is groter dan de helft van het totaal, dus vakmannen staan in meerdere categorieën |
+| "45.000 geplaatste opdrachten per maand" | blog "frisse nieuwe look" | Inhoudsdatum onbekend (datum 24-08-2026 is CMS-datum) |
+| "meer dan 350.000 klussen" per jaar, "meer dan 8.500 aangesloten vakmensen" | over-ons (lopende tekst) | **Verouderd** (vgl. de teller van 42.448). Niet gebruiken als actueel cijfer |
+| "Rob 4.9/5" | homepage, registratiepagina | Betekenis onduidelijk (testimonial of score?). **Geen gemiddelde platformscore gevonden** |
+
+**[interpretatie]** Volgens de 10-K haalt International zijn omzet uit lead fees en abonnementen. Q3 2026 noemt "a decrease in the number of active Pros". "42.491 vakmensen" is waarschijnlijk het aantal geregistreerde profielen, niet het aantal actieve betalende vakmannen **[aanname]**.
+
+### 5. Recente wijzigingen 2024–2026
+
+| Datum | Wijziging | Bron |
+|---|---|---|
+| 17-01-2025 | Nieuwe "Voorwaarden voor Reviews"; reviews van vóór die datum "vallen onder onze vorige richtlijnen" | werkspot.nl/voorwaarden-voor-reviews |
+| 31-03-2025 | IAC splitst Angi af; Werkspot valt onder het zelfstandige Angi Inc. | persbericht 01-04-2025 |
+| 2025 | Canadese tak (HomeStars) gemigreerd naar "the European platform" | Angi 10-K FY2025 |
+| dec. 2024 → mrt. 2026 | **Nieuwe AV-versie** ("Amsterdam, maart 2026"). De archiefversie van 11-08-2025 heet "Amsterdam, December 2024". Nieuw in maart 2026 (niet aangetroffen in de versie van december 2024, gecontroleerd op trefwoorden): art. 6.10 (geen omzeiling van de leadprijs via contactgegevens, leadprijs niet als toeslag), **art. 6.14 (verbod op bots/scrapers/databases)**, art. 7.5–7.6 (geen beïnvloeding van reviews), art. 9.6A/B (één account, geen herregistratie), definities voor DSA-begrippen (Illegale inhoud, Besluit, Verificatiegegevens, Gesponsorde plaatsing), art. 6.8 (gesponsorde plaatsing). Art. 19.1 kreeg de zin "Het is niet nodig dat de Vakman de opdracht krijgt toegewezen…" | werkspot.nl/algemene-voorwaarden (actueel) vs web.archive.org-snapshot 20250811 |
+| onbekend (≤ 2026) | Maximale leadprijs van €60 naar €75 (twee FAQ-pagina's naast elkaar) | werkspot.nl/blog/faq vs /blog/faq-brandende-vragen-over-werkspot |
+| onbekend | Nieuwe huisstijl ("frisse nieuwe look"). De asset-paden van de registratiepagina bevatten "rebrand" | blog; registratiepagina |
+| Q1 2026 | Reorganisatie bij Angi; in Q2 2026 afwaarderingen van $235,2 mln | Angi Q3 2026-persbericht |
+| 03-11-2026 | Angi schrapt ±300 functies wereldwijd; nieuwe CEO Mike Steib; legacy-techplatform wordt uitgefaseerd | Angi Q3 2026-persbericht |
+
+- **Nederlandse pers (Emerce, Sprout/MT, FD, Tweakers, NOS, Kassa, Radar):** via WebSearch is **geen** artikel uit 2024–2026 specifiek over Werkspot gevonden.
+- Kassa heeft alleen een forumbijdrage van een gebruiker uit **05-04-2019**, waarin leadprijzen van "variërend 5,- tot 20,-" worden genoemd (bnnvara.nl/kassa/vraag-beantwoord/…/werkspot). Die is alleen als historisch referentiepunt bruikbaar.
+- ACM: geen Werkspot-specifiek besluit gevonden. De ACM is sinds november 2024 bevoegd voor de P2B-verordening en publiceerde op 11-03-2026 een onderzoek naar de ervaringen van zakelijke gebruikers met de AV van platforms (acm.nl, gerelateerde publicaties; platforms worden op de opgehaalde pagina niet genoemd).
+- **[interpretatie]** De nieuwe AV van maart 2026 vallen in tijd samen met de P2B-/DSA-handhaving. Een oorzakelijk verband is niet aangetoond.
+
+### 6. Algemene voorwaarden – letterlijke artikelen
+
+Bron: https://www.werkspot.nl/algemene-voorwaarden, sectie "Voor Vakmensen", ondertekend "**Amsterdam, maart 2026**" (opgehaald 10-11-2026). De opdrachtgeversectie is eveneens ondertekend met "Amsterdam, maart 2026".
+
+**6a. Automatisch verwerken, scrapen en doorsturen van leads/gegevens**
+- **Art. 6.14:** "De Vakman mag geen bots, scrapers of andere geautomatiseerde middelen gebruiken om toegang te krijgen tot het Platform of gegevens daarvan te verzamelen, noch databases opbouwen uit Platformgegevens, behalve waar dit uitdrukkelijk schriftelijk door Werkspot is toegestaan."
+- **Art. 10.2:** "Het is de Vakman niet toegestaan het Platform of enige inhoud daarvan, zonder schriftelijke toestemming van Werkspot, op welke wijze dan ook aan derden ter beschikking te stellen, te reproduceren, verspreiden, verzenden, of op welke wijze dan ook in een ander document of ander materiaal te verwerken. Dit houdt onder meer in dat het Vakman niet is toegestaan, zonder voorafgaande schriftelijke toestemming van Werkspot, een substantieel gedeelte van de inhoud van (een) databank(en) op te vragen en te hergebruiken en/of nietsubstantiële gedeelten van de inhoud van een databank(en) herhaald en systematisch op te vragen en te hergebruiken in de zin van de Databankenwet."
+- **Art. 6.13:** "Het gebruik van de persoonsgegevens die door middel van het Platform door de Vakman worden verkregen mogen uitsluitend worden gebruikt voor het doel waarvoor deze zijn verstrekt. Het is niet toegestaan om deze gegevens te verwerken voor enig ander doel, waaronder begrepen – maar niet daartoe beperkt – iedere vorm van ongevraagde communicatie (spam). Het is evenmin toegestaan om persoonsgegevens (waaronder e-mail adressen) van Gebruikers te verzamelen voor welk doel dan ook. Schending van dit artikel 6.11 is een wezenlijke tekortkoming en kan leiden tot onmiddellijke beperking, opschorting of beëindiging." (*Let op: de tekst van 6.13 verwijst zelf naar "artikel 6.11"; dat is een nummeringsfout in de bron.*)
+- **Art. 9.6** (accounttoegang): "De Vakman mag uitsluitend zijn werknemers of gemachtigde vertegenwoordigers toegang verlenen tot het Account voor legitieme zakelijke doeleinden in verband met het gebruik van de Diensten, mits de Vakman volledig verantwoordelijk blijft voor alle handelingen en nalatigheden die via het Account door die personen worden verricht."
+- [interpretatie, niet juridisch getoetst]
+  - Een CRM dat inlogt op het Werkspot-account en daar automatisch gegevens ophaalt, valt onder de letterlijke tekst van 6.14 ("bots, scrapers of andere geautomatiseerde middelen … toegang te krijgen tot het Platform"), tenzij Werkspot schriftelijk toestemming geeft.
+  - Of het automatisch verwerken van notificatiemails die de vakman zelf ontvangt hieronder valt, staat niet expliciet in de tekst. 6.13 staat gebruik van verkregen persoonsgegevens toe "voor het doel waarvoor deze zijn verstrekt"; de aanname is dat dat het opvolgen van de klus is.
+  - "databases opbouwen uit Platformgegevens" (6.14) en 10.2 kunnen ook een klantdossier raken dat uit platformgegevens is opgebouwd. Hier is juridisch advies nodig.
+
+**6b. Contact met de klant buiten het platform; gebruik van contactgegevens**
+- **Art. 1.16:** Contactgegevens worden gedeeld "om directe communicatie op of buiten het Platform mogelijk te maken". **[interpretatie]** Contact buiten het platform is dus uitdrukkelijk voorzien zodra de gegevens gedeeld zijn.
+- **Art. 6.10:** "De Vakman mag geen Contactgegevens of andere identificatoren opvragen, publiceren of uitwisselen met het doel of effect de Leadprijs te ontwijken, onder meer door dergelijke gegevens te plaatsen in berichttekst, afbeeldingen, bijlagen of profielvelden die niet voor Contactgegevens zijn bedoeld. De Vakman mag de Leadprijs niet als afzonderlijke toeslag aan de Klant presenteren of stellen dat de Klant verplicht is deze te vergoeden. Dit belet de Vakman niet om zijn algehele prijsstelling zelfstandig vast te stellen."
+- **Art. 6.15:** "Indien de Vakman in strijd handelt met het in artikel 6.10 bepaalde verbeurt hij, zonder nadere waarschuwing of ingebrekestelling en zonder dat daartoe rechterlijke tussenkomst is vereist, een direct opeisbare boete van EUR 1.000 (duizend euro) per gebeurtenis, waarbij het gebruik van een persoonsgegeven geldt als één gebeurtenis…"
+- **Art. 6.4:** "Vakman zal slechts berichten plaatsen op en versturen via het Platform met als doel het verkrijgen van een opdracht … en zal zich onthouden van het versturen van ongewenste en/of ongevraagde berichten aan Opdrachtgevers."
+- **Art. 6.9 sub e:** verboden is "materiaal waarin op enige wijze melding wordt gemaakt dan wel wordt verwezen naar een andere, met de Dienst of het Platform concurrerende of vergelijkbare dienst, website of platform".
+- **Art. 11.1 sub h:** uitsluiting is mogelijk als "de Vakman de betaling van de Leadprijs op enige wijze tracht te omzeilen".
+- **Huisregels** (werkspot.nl/kwaliteitseisen, onderdeel van de AV via art. 6.2 sub g): "gebruik geen waarschuwingen over kosten die voor jou verbonden zijn aan een reactie van de consument."
+  - **[interpretatie]** Dit verklaart waarom vakmannen in reviews klagen dat de consument niet weet dat reageren geld kost: de vakman mag dat in zijn bericht niet zeggen.
+- **Consumentenkant, art. 5.9 opdrachtgevers:** voor de opdrachtgever geldt dezelfde beperking op het gebruik van persoonsgegevens van gebruikers.
+
+**6c. Reviews (eigendom, verwijderen)**
+- **Art. 10.1:** "Alle intellectuele eigendomsrechten met betrekking tot het Platform behoren bij uitsluiting toe aan Werkspot en/of haar licentiegevers, met uitzondering van het materiaal dat door de Gebruikers is aangeleverd door het plaatsen van Reacties, Advertenties, opdrachten, reviews, voorstellen of anderszins. Door inhoud te uploaden … verleent de Vakman aan Werkspot een niet-exclusieve, wereldwijde, royaltyvrije licentie voor de duur van de Overeenkomst … Behoudens de in dit Artikel verleende licentie blijven alle rechten op door de Vakman verstrekte inhoud bij de Vakman of diens licentiegevers."
+- **Art. 7.2:** "De inhoud van een review wordt bepaald door de Opdrachtgever. Werkspot heeft daar geen invloed op en kan niet verantwoordelijk worden gehouden voor de inhoud van reviews."
+- **Art. 7.3:** "Werkspot is te allen tijde gerechtigd een review te verwijderen. Zij kan daar mede, doch niet uitsluitend, toe overgaan indien naar aanleiding van een melding blijkt dat de review onjuist, onbetrouwbaar of onmiskenbaar onrechtmatig is…"
+- **Art. 7.5:** "De Vakman mag niet trachten een Klant te beïnvloeden, onder druk te zetten of te bewegen een beoordeling te wijzigen of te verwijderen door restituties, kortingen of andere voordelen aan te bieden waarop de Klant niet wettelijk recht heeft. Schending kan leiden tot opschorting of beëindiging van het Account."
+- **Art. 7.6:** "De Vakman mag geen beloningen aanbieden voor positieve beoordelingen, verwijderingsverzoeken als voorwaarde voor het oplossen van een geschil of anderszins het beoordelingsproces manipuleren."
+- **Art. 11.2 (slot):** "De Vakman zal na beëindiging van de Dienst geen technische en/of contractuele toegang meer hebben tot de door de Vakman verstrekte of gegenereerde informatie."
+- **Reviewbeleid (17-01-2025):**
+  - "Vakmensen hebben ook het recht om bezwaar te maken tegen een beoordeling die over hen is achtergelaten. We zullen alle ontvangen bezwaren onderzoeken en wanneer we van mening zijn dat een beoordeling in strijd is met onze algemene voorwaarden of dit beleid, kunnen we de beoordeling." (zin onaf in de bron)
+  - "We accepteren ook beoordelingen voor vakmensen van maximaal vijf klanten van buiten ons platform … De beoordeling wordt pas gepubliceerd als de factuur is ontvangen."
+  - "We bepalen naar eigen oordeel of we een beoordeling op verzoek verwijderen of niet."
+- **[interpretatie]**
+  - De review is geen eigendom van de vakman: die is geschreven door de opdrachtgever.
+  - De AV bevatten geen recht om reviews te exporteren of mee te nemen.
+  - Na beëindiging verliest de vakman de toegang (11.2).
+  - Dit bevestigt de lock-in-klacht in analyse/werkspot.md.
+
+**6d. Accountblokkade en beëindiging**
+- **Art. 9.2:** als aanvullende informatie niet binnen 14 dagen wordt verstrekt, mag Werkspot "het Account te blokkeren totdat de gevraagde informatie verstrekt is."
+- **Art. 9.4**, gegronde redenen om te weigeren of te verwijderen: "(i) de Vakman voldoet niet aan de kwaliteitscriteria …, (ii) het bestaan van een vermoeden dat de Vakman in strijd handelt met de Overeenkomst …, (iii) … eerder misbruik …, (iv) de Vakman heeft negatieve beoordelingen en/of klachten van Opdrachtgevers ontvangen en het blokkeren is noodzakelijk om de belangen van de andere Gebruikers te beschermen, (v) … niet langer de juiste kwalificaties …, (vi) de Vakman heeft een onbetaalde factuur, (vii) de Vakman veroorzaakt substantiële schade aan Opdrachtgevers, (viii) enige andere niet nader gespecificeerde reden die door Werkspot op het moment van beoordeling als belangrijk wordt geacht."
+- **Art. 9.5:** bij beperking of opschorting krijgt de vakman "een motivering van dat Besluit op een duurzame gegevensdrager", en kan hij het besluit "aanvechten via het interne klachtenafhandelingssysteem".
+- **Art. 9.6B:** "Indien een Account om gegronde redenen wordt beëindigd, mag de Vakman zich niet opnieuw registreren zonder voorafgaande schriftelijke toestemming van Werkspot."
+- **Art. 11.1:** Werkspot mag "zonder dat daartoe een ingebrekestelling vereist is de Overeenkomst … ontbinden en de Vakman uit[sluiten] … zonder verplicht te zijn om eventuele reeds geïnde vergoedingen terug te betalen, indien daar gegronde redenen voor bestaan". Dat geldt onder meer bij (a) "op enige wijze in strijd handelt met deze Algemene Voorwaarden" en (h) een poging de leadprijs te omzeilen.
+- **Art. 11.2:** het besluit tot beëindiging wordt "ten minste 30 dagen voordat de beëindiging ingaat" meegedeeld, met reden en feiten. Uitzonderingen staan in art. 11.3 (wettelijke plicht, dwingende reden, herhaalde schending).
+- **Art. 16:** interne klachtenprocedure (via support.werkspot.nl/s/contactsupport) en bemiddeling via CEDR voor vakmensen die aan consumenten leveren (16.5).
+- **Huisregels:** "Bij klachten doen we onderzoek en op basis van verleden van het vakbedrijf zullen we mogelijk overgaan tot een laatste waarschuwing of verwijdering van het platform."
+
+**6e. Restitutie:** zie §2 (art. 19.2–19.4, letterlijk geciteerd). Aanvullend: art. 17.5 en 18.4 bepalen dat beëindiging de vakman "niet [ontslaat] van de verplichting om de reeds verschuldigde bedragen te voldoen".
+
+**6f. Aansprakelijkheid**
+- **Art. 4.1:** "Werkspot heeft daarbij slechts een faciliterende rol en kan dan ook niet verantwoordelijk worden gehouden voor handelen of nalaten van een Gebruiker … Werkspot verleent niet de onderliggende werkzaamheden en treedt niet op als agent voor de Klant of de Vakman."
+- **Art. 4.4:** Werkspot garandeert onder meer niet "dat de informatie op het Platform juist, volledig, geschikt, actueel en niet onrechtmatig is, waaronder mede verstaan de door Gebruikers opgegeven informatie". **[interpretatie]** Daaronder vallen dus ook de klusomschrijving en de contactgegevens van de consument.
+- **Art. 13.1:** "Werkspot is alleen aansprakelijk voor directe schade die de Vakman lijdt."
+- **Art. 13.2:** "De totale aansprakelijkheid van Werkspot bedraagt nooit meer dan de totale vergoeding die Vakman aan Werkspot voor de dienst betaald heeft in de twaalf maanden voordat de schadeveroorzakende gebeurtenis zich voordeed, met een maximum van 500 (vijfhonderd) euro."
+- **Art. 13.3:** "Iedere aansprakelijkheid van Werkspot voor indirecte schade, waaronder begrepen maar niet beperkt tot gevolgschade, winstderving en omzetderving, is uitgesloten."
+- **Art. 13.4:** "Niets in deze Overeenkomst beperkt de aansprakelijkheid van Werkspot die ontstaan is door opzet of grove schuld aan de zijde van Werkspot of haar senior management."
+- **Art. 5.1:** Werkspot mag het platform tijdelijk buiten gebruik stellen "zonder dat hierdoor enig recht op schadevergoeding jegens Werkspot ontstaat".
+- **Opdrachtgevers art. 12.3** (alleen voor niet-consumenten, zie 12.1): "De totale aansprakelijkheid van Werkspot zal nimmer meer bedragen dan een bedrag van € 500,00."
+
+**6g. Wijziging van de voorwaarden**
+- **Art. 2.2:** wijzigingen worden "ten minste 30 dagen voordat de wijzigingen in werking treden op een duurzame gegevensdrager" gecommuniceerd; de vakman kan tot dat moment opzeggen.
+- **Art. 6.7:** voor wezenlijke wijzigingen in de rangschikkingsparameters geldt "doorgaans ten minste vijftien (15) dagen" vooraf.
+
+### Bronnen
+
+| URL | Datum |
+|---|---|
+| https://www.werkspot.nl/algemene-voorwaarden (vakmensen + opdrachtgevers, versie "maart 2026") | opgehaald 10-11-2026 |
+| https://web.archive.org/web/20250811175224id_/https://www.werkspot.nl/algemene-voorwaarden (versie "December 2024") | snapshot 11-08-2025, opgehaald 10-11-2026 |
+| https://www.werkspot.nl/blog/faq-brandende-vragen-over-werkspot (€3–€75) | "Bijgewerkt op 24-08-2026"; opgehaald 10-11-2026 |
+| https://www.werkspot.nl/blog/faq (€3–€60) | "Bijgewerkt op 24-08-2026"; opgehaald 10-11-2026 |
+| https://www.werkspot.nl/blog/nieuw-bij-werkspot-directe-aanvraag | inhoudsdatum onbekend; opgehaald 10-11-2026 |
+| https://www.werkspot.nl/blog/cashback-zomeractie-nu-tijdelijk-240-gratis-tegoed-bij-abonnement | actie juni 2017; opgehaald 10-11-2026 |
+| https://www.werkspot.nl/blog/werkspot-heeft-een-frisse-nieuwe-look | inhoudsdatum onbekend; opgehaald 10-11-2026 |
+| https://www.werkspot.nl/blog/niet-tevreden-over-het-werk-van-de-vakman | opgehaald 10-11-2026 |
+| https://www.werkspot.nl/ (homepage, tellers) | opgehaald 10-11-2026 |
+| https://www.werkspot.nl/over-werkspot (→ /over-ons) | opgehaald 10-11-2026 |
+| https://www.werkspot.nl/hoe-werkt-het (ook /hoe-werkt-het/opdrachtgever → zelfde pagina) | opgehaald 10-11-2026 |
+| https://www.werkspot.nl/vakman/registreren | opgehaald 10-11-2026 |
+| https://www.werkspot.nl/voorwaarden-voor-reviews | "Updated: 17 Januari 2025"; opgehaald 10-11-2026 |
+| https://www.werkspot.nl/kwaliteitseisen (huisregels) | opgehaald 10-11-2026 |
+| https://www.sec.gov/Archives/edgar/data/1800227/000110465925030297/tm254280d9_ex99-1.htm (IAC/Angi-spin-off) | 01-04-2025; opgehaald 10-11-2026 |
+| https://www.sec.gov/Archives/edgar/data/1705110/000170511026000011/angi-20251231.htm (Angi 10-K FY2025) | ingediend 20-02-2026; **alleen de eerste ±250 KB van 2,5 MB gelezen** (afkapping door web-fetch) |
+| https://www.sec.gov/Archives/edgar/data/0001705110/000170511026000104/q32026earningsrelease.htm (Angi Q3 2026) | 03-11-2026; opgehaald 10-11-2026 |
+| https://www.bnnvara.nl/kassa/vraag-beantwoord/winkels-webshops/werkspot (gebruikersbijdrage) | 05-04-2019; opgehaald 10-11-2026 |
+| https://www.acm.nl/en/node/24822 (P2B-onderzoek, gerelateerde publicaties) | opgehaald 10-11-2026 |
+
+### Niet opgehaald
+
+- **Restitutiebeleid (gronden en termijnen):** de link uit de FAQ (https://www.werkspot.nl/blog/leads-en-restitutie) geeft een 404. Een WebSearch naar support.werkspot.nl-artikelen leverde geen resultaten op. Het tweede alternatief, https://support.werkspot.nl/s/ (Salesforce-helpcenter, met browser-rendering), gaf een time-out na 60 s. De inhoud van het restitutiebeleid is dus onbekend.
+- **Huidige abonnementsprijzen en de prijs van gesponsorde plaatsing:** niet op openbare pagina's gevonden; waarschijnlijk alleen zichtbaar na inloggen **[aanname]**. De "afzonderlijke algemene voorwaarden" voor gesponsorde plaatsing (art. 6.8) zijn niet gevonden.
+- **Maximum aantal vakmannen per klus/lead:** nergens door Werkspot vermeld.
+- **Gemiddelde reviewscore op het platform:** niet gevonden; de betekenis van "Rob 4.9/5" op de homepage is onduidelijk.
+- **Nederlandse pers 2024–2026** (Emerce, Sprout/MT, FD, Tweakers, NOS, Kassa-uitzending, Radar): geen Werkspot-specifiek artikel gevonden via WebSearch. Sites zijn niet afzonderlijk doorzocht (credit-zuinigheid).
+- **Angi 10-K FY2025:** alleen het eerste deel gelezen. Eventuele toelichtingen verderop over International (bv. minderheidsbelangen, impairments per segment) zijn niet gelezen. Het Q3 2026-10-Q is niet opgehaald.
+- **Instapro Group-site** (careers.instapro.group) en MyBuilder/MyHammer-sites: niet opgehaald.
+- **Volledige vergelijking van de AV december 2024 met maart 2026:** alleen op trefwoorden vergeleken, niet artikel voor artikel.
 <!-- /DEEL1 -->
 
 <!-- DEEL2 -->
