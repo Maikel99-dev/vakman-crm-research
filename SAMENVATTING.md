@@ -1,6 +1,6 @@
 # SAMENVATTING – review-analyse software voor technische vakbedrijven (NL)
 
-*Peildatum: 10 november 2026. Per tool staan de details in `analyse/<tool>.md` en de ruwe reviews in `data/<tool>.csv`.*
+*Peildatum: 10 november 2026. Basis: 26 tools (20 prioriteit 1, 6 prioriteit 2), 981 reviewrijen. Per tool staan de details in `analyse/<tool>.md` en de ruwe reviews in `data/<tool>.csv`.*
 
 **In één alinea.** De bestaande tools worden vooral beoordeeld op één ding: werkt de app in het veld en blijft de data betrouwbaar? De meest genoemde klachten over software zijn bugs en dataverlies na updates, een mobiele app die achterloopt op de webversie, eenzijdige prijsverhogingen en het gevoel vast te zitten. Over **lead-opvang, offerte-opvolging, WhatsApp en nazorg** wordt in de reviews bijna niet geklaagd. Dat komt doordat bijna geen enkele tool deze processen bedient, zodat er ook niets te klagen valt. Het bewijs dat hier een gat zit, komt van de leadplatforms. Daar betalen vakmannen €3–75 per contact. Ze krijgen leads die ze met 3–10 concurrenten delen en die binnen een uur alweer weg zijn. En ze hebben geen instrument om snel op te volgen of om te meten welke bron wat oplevert. Een CRM dat wint op **snelheid van eerste reactie + opvolging + eigen klantbezit**, zonder het werkbon-/ERP-terrein na te bouwen, heeft hier ruimte.
 
@@ -30,6 +30,13 @@
 | Solvari (vakman) | 34 (25 vakman) | alle vakman-rijen 1★ | 14 | Dun en grotendeels 2023–2024 |
 | Trustoo (vakman) | 54 (47 vakman) | alle vakman-rijen 1★ | 54 | Redelijk en recent, maar eenzijdig: geen positieve vakman-reviews gevonden |
 | Zoofy (vakman) | 38 (35 vakman) | 22 / 9 / 4 (vakman) | 22 | Redelijk; veel app-reviews gaan alleen over aanmelden |
+| *Prioriteit 2 (alleen offerte/facturatie, koppelingen, app)* | | | | |
+| Moneybird | 61 | 16 / 38 / 7 | 47 | Redelijk; geen reviewer herkenbaar als vakbedrijf |
+| e-Boekhouden.nl | 40 | 6 / 27 / 7 | 25 | Dun; App Store-reviews grotendeels oud |
+| SnelStart | 49 | 13 / 34 / 2 | 36 | Redelijk; 2 reviewers herkenbaar vakbedrijf |
+| Exact Online | 74 | 46 / 28 / 0 | 67 | Redelijk; 3 reviewers bouw/installatie |
+| HubSpot | 5 | 0 / 4 / 0 (+1 forumvraag) | 5 | Indicatief; alleen VS-bouw/facilities (Capterra.com) |
+| Pipedrive | 9 | 1 / 7 / 1 | 8 | Indicatief; alleen VS-bouw/renewables (Capterra.com) |
 
 *De groepsindeling in deze tabel is achteraf over alle CSV's herberekend met één regel: 1★ / 2–3★ of 4–5★ mét klachtcode = midden / 4–5★ zonder klacht = positief. Daardoor wijkt hij soms 1–2 rijen af van de per-tool-analyse.*
 
@@ -65,6 +72,13 @@ Het getal is het aantal reviews dat het thema noemt; een review kan meerdere the
 | Trustoo | leadkosten (37) | leadkwaliteit (29) | support: wie reclameert wordt minder zichtbaar (23) | lead-concurrentie (11) | lock-in: pauze/opzeggen werkt niet (7) |
 | Zoofy | support (13) | leadkosten + tarief (19) | onboarding/ID-check (10) | bugs (9) | uitbetaling te laat (7) |
 | Spotmaster, Tradecount, BouwBit, Syntess, KRAAN, Admicom, Solar Monkey, OpusFlow | te weinig data | | | | |
+| *Prioriteit 2* | | | | | |
+| Moneybird | mobiel: app beperkt t.o.v. web (35) | bugs na updates (22) | facturatie in app (15) | prijs/pakketwijziging 2026 (12), lock-in (6) | offerte: één prijstabel, geen opdrachtbevestiging (9) |
+| e-Boekhouden.nl | mobiel: fractie van de website (20) | gebruiksgemak/verouderd (14) | facturatie-details (13) | bugs (6) | koppelingen (4) |
+| SnelStart | mobiel, vooral inloggen (28) | bugs (23) | facturatie (12) | support (8) | prijs: API-toegang via duurder pakket (7), koppelingen (6) |
+| Exact Online | mobiel (68) | bugs/regressies na updates (53) | facturatie: uploaden/delen/Peppol (27) | support (9) | gebruiksgemak (9) |
+| HubSpot | prijs bij groei (3) | gebruiksgemak (2) | onboarding: geen sjabloon voor aannemers (1) | rapportage in hogere tiers (1) | – |
+| Pipedrive | gebruiksgemak (3) | geen prijslijst/voorraad in offerte (1) | geen telefonie (1) | onvolledige webformulieren (1) | – |
 
 ---
 
@@ -105,6 +119,8 @@ Net buiten de top 10: werkbon/uren onbetrouwbaar (34 × 2) en facturatie/boekhou
 8. werkbon 34
 9. facturatie 31
 10. planning 21
+
+**Prioriteit 2 bevestigt het beeld.** In de 278 rijen over boekhoudpakketten en generieke CRM's staat **mobiel** bij alle vier de NL-boekhoudpakketten op #1 (Exact Online 68, Moneybird 35, SnelStart 28, e-Boekhouden 20), gevolgd door bugs na updates. Dezelfde top-2 als bij de werkbon-tools.
 
 **De lat** (wat gebruikers het vaakst expliciet waarderen in de software-reviews):
 - gebruiksgemak, juist voor monteurs (60×)
@@ -170,6 +186,14 @@ Gebaseerd op 225 vakman-reviews: Werkspot 118, Trustoo 47, Zoofy 35, Solvari 25.
 
 ---
 
+## 5b. Prioriteit 2: boekhouding en generieke CRM's (offerte, koppelingen, mobiel)
+
+- **Boekhoudpakketten zijn geen offertetool voor vakmensen.** "voor installatiebedrijven het meest onvriendelijke boekhoud programma wat er is… Als installateur maak ik hier ook mn offertes etc in maar dat werkt maar voor de helft." (Exact Online, App Store, 2026-11-02, installateur). Bij Moneybird is het hetzelfde: één prijstabel, geen opdrachtbevestiging en geen app die werkt op de iPad om de klant te laten tekenen ("heb een iPad gekocht om klanten makkelijker te kunnen laten tekenen… dan is de app niet ingericht om op een iPad", Moneybird).
+- **Zoeken op adres ontbreekt ook hier.** "Enkel op naam zoeken in plaats van ook op adres of woonplaats." (SnelStart, App Store, 2026-04-01). Dit bevestigt het klantdossier per adres (§4.4).
+- **Koppelen wordt duurder gemaakt.** SnelStart: API-toegang betekent "verplicht upgraden van 22 naar 54 euro per maand… en je na afloop ook nog eens 250 euro certificeringskosten" (reviewer). Bij Moneybird zit de bankkoppeling sinds de pakketwijziging van 2026 pas in het Groei-pakket (€29, volgens de per-tool-analyse). Een koppeling via UBL/Peppol-export plus de standaard-API's van Moneybird, e-Boekhouden en Exact verlaagt de drempel voor de klant.
+- **WhatsApp wordt ook hier gevraagd, maar is nergens ingebouwd.** "…koppeling maken naar een SMS./ whatsapp sturen bij contact ?" (e-Boekhouden, Google Play, oud).
+- **HubSpot en Pipedrive (VS-bouw, dunne data).** Pipedrive wordt gewaardeerd om de visuele pipeline per klusfase: "keeps our team accountable, and ensures no follow-ups are missed" (Capterra.com). Het is ook goedkoper dan het branchepakket AccuLynx. HubSpot "seems built only for big companies" (Capterra.com). Dit laat zien dat een **simpele pipeline + automatische opvolging** het deel van een generiek CRM is dat aannemers echt gebruiken. Ze missen er wel prijslijsten, vakspecifieke sjablonen en telefonie in.
+
 ## 6. Feature- en positioneringsaanbevelingen
 
 Elke aanbeveling is onderbouwd met bewijs uit de reviews. De volgorde is een voorstel voor prioriteit.
@@ -193,7 +217,7 @@ Elke aanbeveling is onderbouwd met bewijs uit de reviews. De volgorde is een voo
 | 8 | **Nazorg-automaat**: onderhouds- en keuringsherinneringen per object (cv-ketel, warmtepomp, dak, schilderwerk), reviewverzoek na oplevering, jaarlijkse check-in via WhatsApp | Onderhoudsplanning wordt gewaardeerd waar het bestaat (Simple-Simon, OpusFlow, Workmate) en gemist waar het ontbreekt (jaarplanning, terugkerende opdrachten); eigen reviews verminderen de afhankelijkheid van platforms |
 | 9 | **Bezorgcontrole**: bevestiging dat een mail of WhatsApp is afgeleverd, en een melding bij een fout adres | WeFact 2025-12-14; OutSmart 2025-10-16 |
 | 10 | **Mobiel-eerst en "blijft ingelogd"**, met offline wachtrij | Mobiel is #2 in software (107×); uitloggen is een terugkerende klacht bij Bouw7 en Teamleader |
-| 11 | **Koppelingen die wél volledig zijn** (Moneybird, e-Boekhouden, SnelStart, Exact; werkbon-tools) en een openbare API | "Koppeling … houtje touwtje werk" (Bouw7); de Exact-koppeling werkt "net niet" (OutSmart); koppelingen zijn een positief punt bij Teamleader en WeFact |
+| 11 | **Koppelingen die wél volledig zijn** (Moneybird, e-Boekhouden, SnelStart, Exact; werkbon-tools) en een openbare API; zelf **geen boekhouding bouwen**, maar offerte → factuur doorzetten (API of UBL/Peppol) | "Koppeling … houtje touwtje werk" (Bouw7); de Exact-koppeling werkt "net niet" (OutSmart); koppelingen zijn een positief punt bij Teamleader en WeFact; SnelStart-API kost de klant een upgrade naar €54 per maand + €250 certificering |
 | 12 | **Eerlijk prijsmodel**: per bedrijf of gebruiker zonder minimum van 2, maandelijks opzegbaar, gratis volledige export (CSV/Excel + bijlagen), prijsgarantie | Prijs (61) en lock-in (36) in software; "€169 voor een export" (Gripp); Teamleader-minimum van 2 gebruikers; jaarcontract met deurwaarder |
 | 13 | **Inrichting in een dag**: sjablonen per vak (dakdekker, installateur, schilder), import uit Excel, WeFact, Teamleader en Gripp | Onboarding 42×; "drie keer finetunen" (Workmate); "meedenken en adviseren over hoe we het beste kunnen inrichten" (Teamleader) |
 | 14 | **Persoonlijke, telefonisch bereikbare support** als verkoopargument | Support is de nummer-2-waardering (58×) én een top-klacht (57× in software, 148× in totaal) |
@@ -208,7 +232,7 @@ Elke aanbeveling is onderbouwd met bewijs uit de reviews. De volgorde is een voo
 
 ## 7. Bronnenlijst en kwaliteitsnoot per tool
 
-Alle reviews zijn tussen 10 november 2026 en de commitdatum opgehaald via Apify-scrapers (Google Play, App Store, Trustpilot, Google Maps) en Apify web-fetch (Capterra, Trustpilot-filterpagina's, fora). Elke CSV-rij bevat de URL van de bron.
+Alle reviews zijn op 10 november 2026 opgehaald via Apify-scrapers (Google Play, App Store, Trustpilot, Google Maps) en Apify web-fetch (Capterra, Trustpilot-filterpagina's, fora). Elke CSV-rij bevat de URL van de bron.
 
 | Tool | Gebruikte bronnen (aantal rijen) | Niet gelukt / niet aanwezig | Kwaliteitsnoot |
 |---|---|---|---|
@@ -232,6 +256,12 @@ Alle reviews zijn tussen 10 november 2026 en de commitdatum opgehaald via Apify-
 | Solvari | Trustpilot NL (34) | Geen vakman-app gevonden | Dun en verouderd |
 | Trustoo | Trustpilot NL (54; profiel 4.738 reviews, 4,3, overwegend consumenten) | Vakman-app niet gevonden; prijspagina niet opgehaald | Recent, maar eenzijdig negatief |
 | Zoofy | Google Play `nl.zoofy.mobile` (24), Trustpilot NL (14) | – | Redelijk; veel aanmeldklachten |
+| Moneybird (P2) | App Store (25), Google Play (19), Trustpilot (17; score 2,2) | Capterra (1), G2 (14) en Feedback Company niet opgehaald | Redelijk; geen vakbedrijven herkenbaar |
+| e-Boekhouden.nl (P2) | Google Play (18), App Store (9), Trustpilot (13; profiel 4,5 uit 2.069) | GetApp en Trustpilot-filters voor 1★/4★ niet opgehaald | Dun |
+| SnelStart (P2) | App Store (19), Google Play (20), Trustpilot (10) | Prijspagina 404 (prijs uit secundaire bronnen) | Redelijk |
+| Exact Online (P2) | App Store NL (37 uit 100 nieuwste), Google Play (30 uit 100), Trustpilot NL (7 uit 80) | Capterra.nl gaf 410/404 | Redelijk; alleen thema's facturatie/koppeling/app opgenomen |
+| HubSpot (P2) | Capterra.com (4, bouw/facilities), HubSpot Community (1) | G2 time-out; Software Advice 404 | Indicatief; geen NL-reviewers |
+| Pipedrive (P2) | Capterra.com (9, bouw/renewables) | G2 time-out; Reddit leverde niets op | Indicatief; geen NL-reviewers |
 
 ### Aanbevolen vervolgonderzoek
 1. **Interviews** met 8–12 vakbedrijven (2–25 man) die Syntess, KRAAN, OutSmart of Simple-Simon gebruiken én leads van platforms kopen. Toets de gaten uit §4, die nu vooral uit afwezigheid zijn afgeleid.
